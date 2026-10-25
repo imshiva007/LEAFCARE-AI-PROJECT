@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f8f7f0">
+    <meta name="description" content="LeafCare AI is an educational plant leaf disease prediction project powered by machine learning.">
+
+    <title>LeafCare AI | Smart Plant Health</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="#home" class="brand">
+            <span class="brand-icon">✿</span>
+            <span class="brand-text">
+                LeafCare AI
+                <small>SMART PLANT HEALTH</small>
+            </span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#how-it-works" class="nav-link">How it works</a>
+            <a href="#detector" class="nav-link">Plants</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#team" class="nav-link">Our Team</a>
+        </nav>
+
+        <a href="#detector" class="nav-button">Try Leaf Scanner ↗</a>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="eyebrow">
+                    <span class="status-dot"></span>
+                    AI-POWERED PLANT HEALTH
+                </div>
+
+                <h1>
+                    A healthier future<br>
+                    starts with a <span class="highlight">leaf.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Explore plant leaf health using machine learning.
+                    Upload a leaf image or capture a photo to see what
+                    our educational AI model predicts.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#detector" class="primary-button">Try Leaf Scanner →</a>
+                    <a href="#about" class="secondary-button">Learn More</a>
+                </div>
+
+                <p class="hero-note">✓ Educational plant disease detection prototype</p>
+            </div>
+
+            <div class="hero-visual">
+                <div class="visual-glow"></div>
+
+                <div class="floating-card card-top">
+                    <span class="floating-icon">🌱</span>
+                    <div>
+                        <strong>Smart Detection</strong>
+                        <small>Machine learning powered</small>
+                    </div>
+                </div>
+
+                <div class="plant-illustration">
+                    <div class="plant-circle">
+                        <div class="plant-emoji">🌿</div>
+                    </div>
+                    <span class="decor decor-one">✳</span>
+                    <span class="decor decor-two">✦</span>
+                    <span class="decor decor-three">·</span>
+                </div>
+
+                <div class="floating-card card-bottom">
+                    <span class="floating-icon">🔬</span>
+                    <div>
+                        <strong>AI + Machine Learning</strong>
+                        <small>Experimental predictions</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- STATS -->
+        <section class="stats-section">
+            <div class="stat-item">
+                <span class="stat-icon">🌿</span>
+                <div><h3>AI + ML</h3><p>Technology</p></div>
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="stat-item">
+                <span class="stat-icon">📷</span>
+                <div><h3>Two Ways</h3><p>Upload or Camera</p></div>
+            </div>
+
+            <div class="stat-divider"></div>
+
+            <div class="stat-item">
+                <span class="stat-icon">🎓</span>
+                <div><h3>Student Project</h3><p>Educational Prototype</p></div>
+            </div>
+        </section>
+
+
+        <!-- DETECTOR -->
+        <section class="detector-section" id="detector">
+            <div class="section-heading">
+                <div class="eyebrow centered-eyebrow">🌱 PLANT HEALTH LAB</div>
+                <h2>Let's inspect your <span>leaf.</span></h2>
+                <p>Choose a clear plant leaf image to generate an experimental prediction.</p>
+            </div>
+
+            <div class="detector-card">
+                <div class="detector-card-header">
+                    <div>
+                        <span class="step-label">STEP 01</span>
+                        <h3>Upload or capture a leaf</h3>
+                        <p>JPG, PNG or WEBP · Maximum size 10 MB</p>
+                    </div>
+                    <span class="header-leaf">🍃</span>
+                </div>
+
+                <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" hidden>
+                <input type="file" id="cameraInput" accept="image/*" capture="environment" hidden>
+
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">↑</div>
+                    <h4>Drop your leaf image here</h4>
+                    <p>or choose one of the options below</p>
+
+                    <div class="upload-actions">
+                        <button type="button" class="outline-button" id="uploadButton">📁 Upload Image</button>
+                        <button type="button" class="outline-button camera-button" id="cameraButton">📸 Open Camera</button>
+                    </div>
+                </div>
+
+                <!-- LIVE CAMERA -->
+                <div class="camera-panel" id="cameraPanel" hidden>
+                    <div class="camera-heading">
+                        <h4>Capture your leaf</h4>
+                        <button type="button" class="icon-button" id="closeCameraButton" aria-label="Close camera">✕</button>
+                    </div>
+
+                    <video id="cameraVideo" autoplay playsinline muted></video>
+                    <canvas id="cameraCanvas" hidden></canvas>
+
+                    <p class="camera-help">Keep the leaf in focus and ensure good lighting.</p>
+                    <div class="upload-actions">
+                        <button type="button" class="primary-button" id="captureButton">📸 Capture Photo</button>
+                        <button type="button" class="outline-button" id="cancelCameraButton">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- PREVIEW -->
+                <div class="preview-panel" id="previewPanel" hidden>
+                    <div class="preview-heading">
+                        <div>
+                            <span class="step-label">IMAGE SELECTED</span>
+                            <h4>Ready for analysis</h4>
+                        </div>
+                        <button type="button" class="remove-button" id="removeImageButton">Remove image</button>
+                    </div>
+
+                    <div class="preview-image-wrapper">
+                        <img id="imagePreview" src="" alt="Selected plant leaf preview">
+                        <span class="preview-badge">✓ Image ready</span>
+                    </div>
+
+                    <p class="file-information" id="fileInformation"></p>
+                    <button type="button" class="primary-button predict-button" id="predictButton">🔍 Predict Disease →</button>
+                </div>
+
+                <!-- LOADING -->
+                <div class="loading-panel" id="loadingPanel" hidden>
+                    <div class="loader"></div>
+                    <h4>Analyzing your leaf...</h4>
+                    <p>Please wait while the model processes your image.</p>
+                </div>
+
+                <!-- ERROR -->
+                <div class="error-message" id="errorMessage" hidden>
+                    <span>⚠️</span>
+                    <p id="errorText">Something went wrong.</p>
+                </div>
+
+                <!-- RESULT -->
+                <section class="result-panel" id="resultPanel" aria-live="polite" hidden>
+                    <div class="result-top">
+                        <div>
+                            <span class="step-label">ANALYSIS COMPLETE</span>
+                            <h3>Prediction results</h3>
+                        </div>
+                        <span class="result-status">✓ Completed</span>
+                    </div>
+
+                    <div class="main-result">
+                        <div class="result-leaf-icon">🌿</div>
+                        <div class="result-details">
+                            <p class="result-caption">MODEL PREDICTION</p>
+                            <h4 id="predictedClass">Prediction will appear here</h4>
+                            <p class="result-disclaimer">This is an experimental model prediction, not a confirmed diagnosis.</p>
+                        </div>
+                    </div>
+
+                    <div class="confidence-section">
+                        <div class="confidence-heading">
+                            <span>Model confidence score</span>
+                            <strong id="confidenceValue">0%</strong>
+                        </div>
+                        <div class="confidence-track" id="confidenceProgress" role="progressbar" aria-label="Model confidence" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                            <div class="confidence-fill" id="confidenceFill"></div>
+                        </div>
+                        <p class="confidence-note">Confidence is not the same as prediction accuracy.</p>
+                    </div>
+
+                    <div class="top-predictions-section" id="topPredictionsSection" hidden>
+                        <h4>Other possible predictions</h4>
+                        <div id="topPredictions" class="top-predictions"></div>
+                    </div>
+
+                    <div class="result-warning">
+                        <span>ⓘ</span>
+                        <p>Educational prototype only. Predictions may be incorrect. Consult an agricultural expert when needed.</p>
+                    </div>
+
+                    <button type="button" class="outline-button analyze-again-button" id="analyzeAgainButton">↻ Analyze another image</button>
+                </section>
+            </div>
+        </section>
+
+
+        <!-- HOW IT WORKS -->
+        <section class="how-section" id="how-it-works">
+            <div class="section-heading">
+                <div class="eyebrow centered-eyebrow">SIMPLE PROCESS</div>
+                <h2>How it <span>works.</span></h2>
+                <p>Three simple steps to explore an AI-generated leaf disease prediction.</p>
+            </div>
+
+            <div class="steps-grid">
+                <article class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-card-icon">📷</div>
+                    <h3>Choose a leaf</h3>
+                    <p>Upload a leaf image or capture a photo using your camera.</p>
+                </article>
+
+                <article class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-card-icon">🧠</div>
+                    <h3>AI analyzes</h3>
+                    <p>The trained machine learning model processes the image and generates a prediction.</p>
+                </article>
+
+                <article class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-card-icon">📊</div>
+                    <h3>View the result</h3>
+                    <p>Review the predicted class and confidence score.</p>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- ABOUT -->
+        <section class="about-section" id="about">
+            <div class="about-content">
+                <div class="eyebrow">ABOUT THE PROJECT</div>
+                <h2>Technology with a <span>green purpose.</span></h2>
+                <p>
+                    LeafCare AI is a student project exploring how artificial intelligence
+                    and machine learning can classify plant leaf images. The model is
+                    experimental, and its predictions may not always be correct.
+                </p>
+                <a href="#team" class="secondary-button">Meet our team ↓</a>
+            </div>
+            <div class="about-visual">
+                <span>🌱</span>
+                <p>Learn · Build · Grow</p>
+            </div>
+        </section>
+
+
+        <!-- TEAM -->
+        <section class="team-section" id="team">
+            <div class="team-heading">
+                <div class="eyebrow centered-eyebrow">THE PEOPLE BEHIND THE PROJECT</div>
+                <h2>Meet our <span>team.</span></h2>
+                <p>Four minds. One mission. Smarter plant care.</p>
+            </div>
+
+            <div class="team-grid">
+
+                <article class="team-card">
+                    <div class="team-photo-wrap">
+                        <span class="member-number">01</span>
+                        <img src="images/shiva.JPEG" alt="Shiva Mishra" class="team-photo" loading="lazy">
+                    </div>
+                    <div class="team-info">
+                        <span class="team-role">PROJECT LEAD</span>
+                        <h3>Shiva Mishra</h3>
+                        <p>Project Lead &amp; AI/ML Developer</p>
+                        <div class="skill-tags"><span>AI/ML</span><span>Leadership</span></div>
+                    </div>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-photo-wrap">
+                        <span class="member-number">02</span>
+                        <img src="images/anubhav.JPEG" alt="Anubhav Mishra" class="team-photo" loading="lazy">
+                    </div>
+                    <div class="team-info">
+                        <span class="team-role">DESIGN &amp; INTERFACE</span>
+                        <h3>Anubhav Mishra</h3>
+                        <p>Frontend Developer</p>
+                        <div class="skill-tags"><span>UI Design</span><span>Frontend</span></div>
+                    </div>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-photo-wrap">
+                        <span class="member-number">03</span>
+                        <img src="images/anuj.JPEG" alt="Anuj Kumar Prajapati" class="team-photo" loading="lazy">
+                    </div>
+                    <div class="team-info">
+                        <span class="team-role">SERVER &amp; API</span>
+                        <h3>Anuj Kumar Prajapati</h3>
+                        <p>Backend Developer</p>
+                        <div class="skill-tags"><span>Backend</span><span>API</span></div>
+                    </div>
+                </article>
+
+                <article class="team-card">
+                    <div class="team-photo-wrap">
+                        <span class="member-number">04</span>
+                        <img src="images/kundan.JPEG" alt="Kundan Pandey" class="team-photo" loading="lazy">
+                    </div>
+                    <div class="team-info">
+                        <span class="team-role">DATA &amp; MODEL</span>
+                        <h3>Kundan Pandey</h3>
+                        <p>Dataset &amp; Model Training Engineer</p>
+                        <div class="skill-tags"><span>Dataset</span><span>Python</span></div>
+                    </div>
+                </article>
+
+            </div>
+
+            <p class="team-footer-note">Working together to explore AI-powered plant health analysis.</p>
+        </section>
+
+
+        <!-- DISCLAIMER -->
+        <section class="disclaimer-section">
+            <div class="disclaimer-icon">ⓘ</div>
+            <div>
+                <h3>Built for educational purposes</h3>
+                <p>
+                    LeafCare AI is a student machine learning project. Predictions can be
+                    incorrect and should not be treated as a confirmed plant disease
+                    diagnosis. Consult a qualified agricultural expert when needed.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <a href="#home" class="brand footer-brand">
+            <span class="brand-icon">✿</span>
+            <span class="brand-text">LeafCare AI<small>SMART PLANT HEALTH</small></span>
+        </a>
+        <p>An educational AI &amp; machine learning project.</p>
+        <span class="footer-copy">© <span id="currentYear"></span> LeafCare AI</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
