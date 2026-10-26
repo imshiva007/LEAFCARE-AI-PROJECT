@@ -708,7 +708,7 @@ if (predictButton) {
                 /fetch/i.test(message)
             ) {
                 message =
-                    "Cannot connect to the AI backend. Start FastAPI at http://127.0.0.1:8000 and check the API URL.";
+                    "Cannot connect to the AI backend. Please check your internet connection or try again in a moment.";
             }
 
             showError(message);
