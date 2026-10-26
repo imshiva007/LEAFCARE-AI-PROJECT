@@ -7,7 +7,7 @@
 // If your website is deployed online, update API_URL
 // to your deployed backend URL.
 
-const API_URL = "http://127.0.0.1:8000/predict";
+const API_URL = "https://leafcare-ai-project.onrender.com/predict";
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
 
